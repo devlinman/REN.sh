@@ -1,5 +1,6 @@
 #! /bin/bash
-[ ! -d "./PDF" ] && mkdir "./PDF" || exit 1
+[ -d "./PDF" ] && echo -e "\e[1;31mPDF folder already exists!!\nABORTING!\e[0m" && exit 200
+mkdir "./PDF" || exit 220
 OIFS="$IFS"
 IFS=$'\n'
 
@@ -50,7 +51,7 @@ if [ -d "$dir" ]; then
         converter "$dir" "PNG"
         echo -e "\nPNG:$(find "$dir" -name "*.png" -type f | wc -l)\tDIR = $dir \t Completed"
     else
-        echo -e "\nother files found in current directory!\n\nCannot proceed!\nConvert all the images to PNG or JPG first or use -both flag!\n"
+        echo -e "\n\n\e[1;31mCannot proceed!\nABORTING!\n\nOTHER FILES ARE PRESENT IN THE DIRECTORY!!\e[0m\nHELP:\n\tConvert all the images to PNG or JPG first or use -both flag!\n\n\tFiles of other types may be present in the folder."
         exit 1
     fi
     echo EOF 1 && exit
@@ -58,3 +59,7 @@ fi
 
 IFS="$OIFS"
 echo EOF 2; exit
+
+# This file is a part of REN.sh suite and is packaged along with it.
+# All Licensing terms and conditions of REN.sh will apply to this file/program also.
+# Copyright (C) 2023  devlinman

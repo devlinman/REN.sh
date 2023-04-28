@@ -1,4 +1,19 @@
 #! /bin/bash
+[ "$1" != "-c" ] && echo 'Copyright (C) 2023  devlinman
+Use "-c" option to show Copyright information.'
+
+[ "$1" == "-c" ] && echo '
+Copyright (C) 2023  devlinman
+Copyright for "REN.sh" and "ex-pdf.sh"
+Please note that "ex-pdf" is a component of the REN.sh suite and is therefore subject to the same copyright as the rest of the suite.
+>   This program uses ImageMagick to convert images to PDF format.
+    PDF is a registered trademark of Adobe Systems Incorporated.
+>   This program is not affiliated with Adobe PDF, and the author of this program does not claim to own or represent Adobe PDF in any way.
+>   This program uses (needs as a dependency) ImageMagick to perform image processing, which is licensed under the Apache License, Version 2.0
+>   This program uses (needs as a dependency) the zip command from the Info-ZIP project to compress files, which is released under the Info-ZIP license.
+' && cat ./LICENSE && exit
+
+
 [ "$#" -ge 3 ] && echo -e "\n\e[1;31mError: too many arguments\e[0m\nUse '-h' for help" && exit 100
 OIFS="$IFS"
 IFS=$'\n'
@@ -110,9 +125,9 @@ for file in *; do
 done
 echo -e "\n\n\t\e[1;32mTask Finished Successfully!\n\tTotal:\t'\e[1;33m$count\e[0m' files renamed of '\e[1;35m$(ls | wc -l)\e[0m' files!\e[0m"
 IFS="$OIFS"
+
 echo EOF 1
 exit
-
 
 # @_devlinman
 # CHAT_GPT
