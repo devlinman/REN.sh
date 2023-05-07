@@ -33,8 +33,11 @@ if [[ "$#" == "1" ]] && [[ "$1" =~ -x ]]; then
 
     echo -e "\n\e[1;32mConveted all image files and created folder '../${dir}' !\e[0m\n"
     cd .. || exit 225
-    [ -d ./PDF ] && echo -e "\e[1;31mPDF folder already exists.\nAborting...\e[0m" && exit 226
-    [ "$1" == "-xpdf" ] && echo -e "\e[1;32m'-xpdf' option received!\e[0m" && ex-pdf "${dir}" && rm -r ${dir} && echo -e "\e[1;32m\nCreated PDF file ../PDF/${dir/zipper/pdf}\nRemoved $dir\e[0m"
+    if [ "$1" == "-xpdf" ]; then
+        echo -e "\e[1;32m'-xpdf' option received!\e[0m"
+        [ -d ./PDF ] && echo -e "\e[1;31mPDF folder already exists.\nAborting...\e[0m" && exit 226
+        ex-pdf "${dir}" && rm -r ${dir} && echo -e "\e[1;32m\nCreated PDF file ../PDF/${dir/zipper/pdf}\nRemoved $dir\e[0m"
+    fi
     [ "$1" != "-xzip" ] && exit
     zipfile=${dir/zipper/zip}
     zip -re "$zipfile" "${dir}" || exit 250
