@@ -126,7 +126,7 @@ for file in *; do
         ((count+=1))
     fi
 done
-echo -e "\n\n\t\e[1;32mTask Finished Successfully!\n\tTotal:\t'\e[1;33m$count\e[0m' files renamed of '\e[1;35m$(ls | wc -l)\e[0m' files!\e[0m"
+echo -e "\n\n\t\e[1;32mTask Finished Successfully!\n\tTotal:\t'\e[1;33m$count\e[0m' files renamed of '\e[1;35m$(ls | wc -l)\e[0m' items!\e[0m"
 IFS="$OIFS"
 
 echo EOF 1
