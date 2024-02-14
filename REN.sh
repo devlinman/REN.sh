@@ -11,7 +11,7 @@ Please note that "ex-pdf" is a component of the REN.sh suite and is therefore su
 >   This program is not affiliated with Adobe PDF, and the author of this program does not claim to own or represent Adobe PDF in any way.
 >   This program uses (needs as a dependency) ImageMagick to perform image processing, which is licensed under the Apache License, Version 2.0
 >   This program uses (needs as a dependency) the zip command from the Info-ZIP project to compress files, which is released under the Info-ZIP license.
-' && cat ./LICENSE && exit
+' && less /usr/share/REN/REN.LICENSE && echo -e ">   License can be found at '/usr/share/REN/REN.LICENSE'" && exit
 
 
 [ "$#" -ge 3 ] && echo -e "\n\e[1;31mError: too many arguments\e[0m\nUse '-h' for help" && exit 100
@@ -119,7 +119,7 @@ for file in *; do
         newname="$(basename "${file}" .${file##*.} ).$ext"
         echo -e "\nOriginal File :\t\t\e[1;35m'${file}'\e[0m\nFile Type :\t\t\e[1;33m'${filetype}'\e[0m\nNew Name :\t\t\e[1;36m'${newname}'\e[0m\n"
         mv -vn "${file}" "$newname" || {
-            [ -f "$newname" ] && echo -e "\n\t\e[1;31mCannot rename, as a file '${newname}' already exists!\e[0m"
+            [ -f "$newname" ] && echo -e "\n\t\e[1;31mCannot rename! A file - '${newname}' already exists!\e[0m"
             echo -e "\n\t\e[1;31mFailed to rename ${file}\e[0m\n\n\tTotal:\t$count files renamed!"
             exit 800
         }
